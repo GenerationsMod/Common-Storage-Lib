@@ -6,8 +6,8 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("ALL")
 @Expect
-public final class DataManagerRegistry {
-    public DataManagerRegistry(String modid);
+public class DataManagerRegistry {
+    public  DataManagerRegistry(String modid);
 
     public <T> DataManagerBuilder<T> builder(Supplier<T> factory);
 

@@ -28,7 +28,9 @@ public class TestMod {
     public static final Supplier<BlockEntityType<TransferTestBlockEntity>> TRANSFER_BLOCK_ENTITY = registerBlockEntity("transfer_block_entity", TransferTestBlockEntity::new);
 
     @Expect
-    public static <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String name, BlockEntityType.BlockEntitySupplier<T> supplier);
+    public static <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String name, BlockEntityType.BlockEntitySupplier<T> supplier) {
+        throw new RuntimeException();
+    }
 
     public static void init() {
         REGISTRY.init();
