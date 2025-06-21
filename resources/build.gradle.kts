@@ -18,7 +18,6 @@ repositories {
     }
 }
 
-
 dependencies {
     compileOnly("org.jetbrains:annotations:26.0.0")
 }
@@ -32,21 +31,13 @@ cloche {
     }
 
     metadata {
-        modId = "common_storage_lib"
-        name = "Common Storage Lib: Core"
-        description = "Abstraction of the mod loader's resource storage system, allowing for easy access to items, fluids and energy. This library also includes abstractions for Data Attachments, Api Lookups, and Transfer Variants and ingredients"
+        modId = "common_storage_lib_resources"
+        name = "Common Storage Lib: Resources"
+        description = "Abstraction for Transfer resources, including Item, Fluids and Entity resources, as well as Ingredient, Tag, and Codec utilities for them"
         author("CodexAdrian")
         license = "MIT"
         issues = "https://github.com/terrarium-earth/Common-Storage-Lib/issues"
         sources = "https://github.com/terrarium-earth/Common-Storage-Lib"
-    }
-
-    common {
-        dependencies {
-            api(project(":data"))
-            api(project(":lookup"))
-            api(project(":resources"))
-        }
     }
 
     neoforge {
@@ -68,15 +59,6 @@ cloche {
             }
         }
 
-        dependencies {
-            include(project(":data"))
-            api(project(":data"))
-            include(project(":lookup"))
-            api(project(":lookup"))
-            include(project(":resources"))
-            api(project(":resources"))
-        }
-
         runs {
             server()
             client()
@@ -86,30 +68,26 @@ cloche {
 
     fabric {
         metadata {
-            entrypoint("main", "earth.terrarium.common_storage_lib.FabricCommonStorageLib")
+            entrypoint("main", "earth.terrarium.common_storage_lib.resources.ResourceLib::init")
             dependency {
                 modId = "fabric"
                 version("*")
             }
             dependency {
                 modId = "fabric"
-                modId = ">=1.20.6"
+                version(">=1.20.6")
             }
         }
 
+
         loaderVersion = properties["fabricLoaderVersion"] as String
 
-        dependencies {
-            fabricApi(properties["fabricApiVersion"] as String)
+        accessWideners.from("src/main/resources/common_storage_lib_resources.accesswidener")
 
-            dependencies {
-                include(project(":data"))
-                api(project(":data"))
-                include(project(":lookup"))
-                api(project(":lookup"))
-                include(project(":resources"))
-                api(project(":resources"))
-            }
+        mixins.from("src/main/common_storage_lib_data.json")
+
+        dependencies {
+            fabricApi(properties["fabricApiVersion"] as String) // Optional
         }
 
         runs {

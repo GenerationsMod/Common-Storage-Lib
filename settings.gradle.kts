@@ -10,4 +10,4 @@ pluginManagement {
     }
 }
 
-include("core", "data") //, "lookup", "resources", "test")
+include("core", "data", "lookup", "resources")//, "test")

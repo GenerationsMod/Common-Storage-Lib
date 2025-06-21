@@ -4,9 +4,6 @@ plugins {
     id("earth.terrarium.cloche") version "0.10.4"
 }
 
-group = properties["group"]!!
-version = properties["version"]!!
-
 repositories {
     cloche.librariesMinecraft()
 
@@ -22,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.jetbrains:annotations:24.0.5")
+    compileOnly("org.jetbrains:annotations:26.0.0")
 }
 
 cloche {
@@ -34,9 +31,9 @@ cloche {
     }
 
     metadata {
-        modId = "common_storage_lib_data"
-        name = "Common Storage Lib: Data"
-        description = "Abstraction for Data Attachments, as well as providing a wrapper around Components to make working with all data easier."
+        modId = "common_storage_lib_lookup"
+        name = "Common Storage Lib: Lookup"
+        description = "Abstraction for mod loader's item/entity/block API provider system (Capabilities/ApiLookup)"
         author("CodexAdrian")
         license = "MIT"
         issues = "https://github.com/terrarium-earth/Common-Storage-Lib/issues"
@@ -73,14 +70,12 @@ cloche {
 
     fabric {
         metadata {
-            entrypoint("main", "earth.terrarium.common_storage_lib.data.FabricDataLib")
-            entrypoint("client", "earth.terrarium.common_storage_lib.data.FabricDataLibClient")
             dependency {
                 modId = "fabric"
                 version("*")
             }
             dependency {
-                modId = "fabric"
+                modId = "minecraft"
                 version(">=1.20.6")
             }
         }
