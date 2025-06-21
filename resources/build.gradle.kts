@@ -82,9 +82,9 @@ cloche {
 
         loaderVersion = properties["fabricLoaderVersion"] as String
 
-        accessWideners.from("src/main/resources/common_storage_lib_resources.accesswidener")
+        accessWideners.from("src/fabric/main/common_storage_lib_resources.accesswidener")
 
-        mixins.from("src/main/common_storage_lib_data.json")
+//        mixins.from("src/main/common_storage_lib_data.json")
 
         dependencies {
             fabricApi(properties["fabricApiVersion"] as String) // Optional
